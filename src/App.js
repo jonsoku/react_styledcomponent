@@ -1,16 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import styled from "styled-components";
+import styled, { createGlobalStyle, css , keyframes } from "styled-components";
 
-class App extends Component {
-  render() {
-    return (
-        <Container>
-            <Button danger>HELLO</Button>
-            <Button success>HELLO</Button>
-        </Container>
-    );
-  }
-}
 /* 기존
 
 
@@ -19,6 +9,13 @@ const Button = ({danger}) => (
 )
 
  */
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin:0;
+    padding:0;
+  }
+`
 
 const Container = styled.div`
   height: 100vh;
@@ -40,8 +37,49 @@ const Button = styled.button`
     outline:none;
   }
   background-color: ${props => props.danger ? "#e74c3c" : "skyblue"};
+  
+  ${props => {
+    if (props.danger) {
+        return css`animation: ${Rotation} ${props.rotationTime}s linear infinite;`;
+      }
+  }}
+  
 `;
 
+//똑같은 스타일(css)를 다른 태그사용할때 재활용하기.
+//const Anchor = Button.withComponent("a")
+//const Anchor = Button.withComponent("a").extend`
+// text-decoration:none;
+// `;
+
+const Anchor = styled(Button.withComponent("a"))`
+  text-decoration:none;
+`;
+
+
+const Rotation = keyframes`
+from{
+transform: rotate(0deg);
+}
+to{
+transform: rotate(360deg);
+}
+`;
+
+class App extends Component {
+  render() {
+    return (
+        <>
+        <GlobalStyle/>
+        <Container>
+            <Button danger rotationTime={0.5}>HELLO</Button>
+            <Button success>HELLO</Button>
+            <Anchor href="http://google.com">Go to Google</Anchor>
+        </Container>
+        </>
+    );
+  }
+}
 
 
 
