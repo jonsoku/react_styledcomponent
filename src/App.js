@@ -17,7 +17,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-//그룹화
 const Card = styled.div`
   background-color: red;
 `;
@@ -36,11 +35,6 @@ const Button = styled.button`
   padding: 25px 15px;
   background-color: ${props => props.theme.successColor};
 `;
-const Button2 = styled.button`
-  border-radius: 30px;
-  padding: 25px 15px;
-  background-color: ${props => props.theme.dangerColor};
-`;
 
 class App extends Component {
     render() {
@@ -56,8 +50,7 @@ class App extends Component {
 
 const Form = () => (
     <Card>
-        <Button>Success</Button>
-        <Button2>Danger</Button2>
+        <Button>Hello</Button>
     </Card>
 );
 
