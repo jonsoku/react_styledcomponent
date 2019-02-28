@@ -17,6 +17,15 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+//그룹화
+const Card = css`
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0,0,0,0.08);
+  background-color: white;
+  border-radius: 10px;
+  padding:20px;
+`
+
+
 const Container = styled.div`
   height: 100vh;
   width:100%;
@@ -44,6 +53,8 @@ const Button = styled.button`
       }
   }}
   
+  
+  
 `;
 
 //똑같은 스타일(css)를 다른 태그사용할때 재활용하기.
@@ -66,15 +77,21 @@ transform: rotate(360deg);
 }
 `;
 
+
+const Input = styled.input.attrs({
+    required: true
+})`
+  border:none;
+  ${Card}
+`;
+
 class App extends Component {
   render() {
     return (
         <>
         <GlobalStyle/>
         <Container>
-            <Button danger rotationTime={0.5}>HELLO</Button>
-            <Button success>HELLO</Button>
-            <Anchor href="http://google.com">Go to Google</Anchor>
+            <Input placeholder="hello"/>
         </Container>
         </>
     );
